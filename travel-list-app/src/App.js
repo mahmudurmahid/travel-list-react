@@ -1,6 +1,6 @@
 export default function App() {
   return (
-    <div>
+    <div className="app">
       <Logo />
       <Form />
       <PackingList />
@@ -21,6 +21,15 @@ function Form() {
   );
 }
 
-function PackingList() {}
+function PackingList() {
+  return <div className="list"></div>;
+}
 
-function Stats() {}
+function Stats() {
+  return (
+    <footer className="stats">
+      {" "}
+      <em>There are X items on your list & you have packed Y ✈️</em>
+    </footer>
+  );
+}
