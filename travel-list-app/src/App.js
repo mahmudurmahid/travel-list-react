@@ -9,7 +9,9 @@ export default function App() {
   );
 }
 
-function Logo() {}
+function Logo() {
+  return <h1>🌴 Travel Tidy ⛱</h1>;
+}
 
 function Form() {}
 
