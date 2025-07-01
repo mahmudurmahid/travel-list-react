@@ -28,7 +28,7 @@ export default function App() {
         onDeleteItem={handleDeleteItem}
         onToggleItem={handleToggleItem}
       />
-      <Stats />
+      <Stats items={items} />
     </div>
   );
 }
@@ -47,7 +47,6 @@ function Form({ onAddItems }) {
     if (!description) return;
 
     const newItem = { description, quantity, packed: false, id: Date.now() };
-    console.log(newItem);
 
     onAddItems(newItem);
 
@@ -112,11 +111,26 @@ function Item({ item, onDeleteItem, onToggleItem }) {
   );
 }
 
-function Stats() {
+function Stats({ items }) {
+  if (!items.length)
+    return (
+      <p className="stats">
+        <em>Start adding items to your packing list 🗓</em>
+      </p>
+    );
+
+  const numItems = items.length;
+  const numPacked = items.filter((item) => item.packed).length;
+  const percentage = Math.floor((numPacked / numItems) * 100);
+
   return (
     <footer className="stats">
-      {" "}
-      <em>There are X items on your list & you have packed Y ✈️</em>
+      <em>
+        {percentage === 100
+          ? "You have everything packed. Ready to go 🌍"
+          : `There are ${numItems} items on your list & you have packed ${numPacked} (
+        ${percentage}%) ✈️`}
+      </em>
     </footer>
   );
 }
